@@ -10,9 +10,11 @@ namespace Aplication
             var assembly = GetType().Assembly;
 
             // Register Behaviors
+            builder.RegisterGeneric(typeof(TimingBehavior<,>))
+                .AsImplementedInterfaces();
             builder.RegisterGeneric(typeof(LoggingBehavior<,>))
                 .AsImplementedInterfaces();
-            builder.RegisterGeneric(typeof(TimingBehavior<,>))
+            builder.RegisterGeneric(typeof(ValidationBehavior<,>))
                 .AsImplementedInterfaces();
 
             // Register Handlers

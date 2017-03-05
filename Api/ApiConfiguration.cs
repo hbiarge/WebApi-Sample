@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Api.Infrastructure;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -11,7 +12,8 @@ namespace Api
             // Map attribute routes
             config.MapHttpAttributeRoutes();
 
-            config.Filters.Add(new AuthorizeAttribute());
+            config.Filters.Add(new CustomAuthorizeAttribute());
+            config.Filters.Add(new ValidationErrorAttribute());
 
             // Show errors to local requests
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.LocalOnly;

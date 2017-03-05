@@ -36,6 +36,9 @@
     <Reference Include="Autofac.Integration.WebApi, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.WebApi2.4.0.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=6.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.4.0\lib\Net45\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="MediatR, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MediatR.3.0.0\lib\net45\MediatR.dll</HintPath>
     </Reference>
@@ -43,6 +46,7 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -60,17 +64,18 @@
   <ItemGroup>
     <Compile Include="ApiConfiguration.cs" />
     <Compile Include="AutofacConfiguration.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="BindingModels\ScreenBindingModel.cs" />
+    <Compile Include="Controllers\ScreensController.cs" />
+    <Compile Include="Controllers\CinemasController.cs" />
+    <Compile Include="Infrastructure\CustomAuthorize.cs" />
+    <Compile Include="Infrastructure\ValidateModelAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BindingModels\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Aplication\Aplication.csproj">
       <Project>{5feec7ee-4041-4523-97c7-0e035f1be1cb}</Project>

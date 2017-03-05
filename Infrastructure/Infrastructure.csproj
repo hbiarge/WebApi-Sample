@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InfrastructureModule.cs" />
     <Compile Include="Configuration\FilmEntityConfiguration.cs" />
     <Compile Include="Configuration\ScreenEntityConfiguration.cs" />
     <Compile Include="Configuration\SeatEntityConfiguration.cs" />
@@ -58,12 +59,18 @@
     <Compile Include="Configuration\TicketEntityConfiguration.cs" />
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="Configuration\CinemaEntityConfiguration.cs" />
+    <Compile Include="Initializers\DropCreateDatabaseAlways.cs" />
+    <Compile Include="Initializers\MigrateDatabaseToLatestVersion.cs" />
+    <Compile Include="Initializers\Initiaizer.cs" />
     <Compile Include="Migrations\201703051205478_Initial.cs" />
     <Compile Include="Migrations\201703051205478_Initial.Designer.cs">
       <DependentUpon>201703051205478_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CinemaRepository.cs" />
+    <Compile Include="Repositories\FilmRepository.cs" />
+    <Compile Include="Repositories\SessionsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

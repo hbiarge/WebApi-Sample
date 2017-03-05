@@ -3,8 +3,10 @@ using System.Web.Http;
 using Api;
 using Autofac;
 using Autofac.Integration.WebApi;
+using Infrastructure;
 using Microsoft.Owin;
 using Owin;
+using Serilog;
 
 [assembly: OwinStartup(typeof(WebHost.Startup))]
 
@@ -16,8 +18,15 @@ namespace WebHost
 
         public void Configuration(IAppBuilder app)
         {
+            Log.Logger = new LoggerConfiguration()
+                //.WriteTo.LiterateConsole()
+                .Enrich.FromLogContext()
+                .MinimumLevel.Information()
+                .CreateLogger();
+            
             var builder = new ContainerBuilder();
             AutofacConfiguration.Configure(builder);
+            builder.RegisterModule<InfrastructureModule>();
 
             _container = builder.Build();
 

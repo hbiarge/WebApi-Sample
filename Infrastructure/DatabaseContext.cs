@@ -1,4 +1,6 @@
 ﻿using System.Data.Entity;
+using System.Threading.Tasks;
+using Domain;
 using Domain.Aggregates.Cinemas;
 using Domain.Aggregates.Fims;
 using Domain.Aggregates.Sessions;
@@ -6,7 +8,7 @@ using Infrastructure.Configuration;
 
 namespace Infrastructure
 {
-    public class DatabaseContext : DbContext
+    public class DatabaseContext : DbContext, IUnitOfWork
     {
         public DatabaseContext()
             : base("Cinematic")
@@ -28,6 +30,11 @@ namespace Infrastructure
             modelBuilder.Configurations.Add(new SessionEntityConfiguration());
             modelBuilder.Configurations.Add(new SessionSeatEntityConfiguration());
             modelBuilder.Configurations.Add(new TicketEntityConfiguration());
+        }
+
+        public async Task CommitAsync()
+        {
+            await SaveChangesAsync();
         }
     }
 }

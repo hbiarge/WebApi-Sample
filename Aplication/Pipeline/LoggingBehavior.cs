@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿    using System;
+    using System.Threading.Tasks;
 using MediatR;
 using Serilog;
 using Serilog.Context;
@@ -14,10 +15,18 @@ namespace Aplication.Pipeline
         {
             using (LogContext.PushProperty("MediatRRequestType", typeof(TRequest).FullName))
             {
-                Log.Information("Start executing handler");
-                var response = await next();
-                Log.Information("End executing handler");
-                return response;
+                try
+                {
+                    Log.Information("Start executing handler for request: {MediatRRequestType}");
+                    var response = await next();
+                    Log.Information("End executing handler for request: {MediatRRequestType}");
+                    return response;
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e, "Error processing the request");
+                    throw;
+                }
             }
         }
     }

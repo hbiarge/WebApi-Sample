@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Domain.Aggregates.Fims
+namespace Domain
 {
-    public interface IFimRepository
+    public interface IRepository
     {
+        IUnitOfWork UnitOfWork { get; }
     }
 }

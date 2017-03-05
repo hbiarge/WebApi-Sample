@@ -5,8 +5,15 @@ namespace Api.IntegrationTests
 {
     public static class Identities
     {
-        public static IEnumerable<Claim> User = new[]
+        public static readonly IEnumerable<Claim> Administrator = new[]
         {
+            new Claim(ClaimTypes.Role, "Administrator"),
+            new Claim(ClaimTypes.Name, "Hugo")
+        };
+
+        public static readonly IEnumerable<Claim> User = new[]
+        {
+            new Claim(ClaimTypes.Role, "Vendor"),
             new Claim(ClaimTypes.Name, "Hugo") 
         };
     }
