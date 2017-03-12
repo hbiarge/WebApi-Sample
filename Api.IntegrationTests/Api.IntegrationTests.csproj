@@ -113,7 +113,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\CollectionFixtures\SeedData.cs" />
     <Compile Include="Infrastructure\HttpResponseMessageExtensions.cs" />
+    <Compile Include="Specs\CreateScreen.cs" />
     <Compile Include="Specs\GetCinemas.cs" />
     <Compile Include="Identities.cs" />
     <Compile Include="Infrastructure\CollectionFixtures\Collections.cs" />

@@ -7,10 +7,16 @@ namespace Infrastructure
     {
         protected override void Load(ContainerBuilder builder)
         {
-            // Register DbContext
+            // Manually register DbContext
             builder.Register(c => new DatabaseContext())
                 .AsSelf()
                 .InstancePerRequest();
+
+            // Scan assembly for other registrations
+            var assembly = GetType().Assembly;
+
+            builder.RegisterAssemblyTypes(assembly)
+                .AsImplementedInterfaces();
         }
     }
 }

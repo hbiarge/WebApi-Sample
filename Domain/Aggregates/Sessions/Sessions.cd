@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Domain.Aggregates.Sessions.Session">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAAACAAAAAABgAAAAAAAAAABAAAAACAIgAAAAA=</HashCode>
+      <FileName>Aggregates\Sessions\Session.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Seats" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Domain.Aggregates.Sessions.SessionSeat">
+    <Position X="3.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAQACQAAAQBAIAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Aggregates\Sessions\SessionSeat.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Ticket" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Domain.Aggregates.Sessions.Ticket">
+    <Position X="6.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAEAAAAAAAAIAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Aggregates\Sessions\Ticket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

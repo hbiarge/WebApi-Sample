@@ -5,9 +5,14 @@ namespace Domain.Aggregates.Cinemas
 {
     public class Screen
     {
+        public const int MinRowsNumber = 1;
+        public const int MaxRowsNumber = 100;
+        public const int MinSeatsPerRowNumber = 1;
+        public const int MaxSeatsPerRowNumber = 50;
+
         protected Screen() { }
 
-        public Screen(Cinema cinema, string name)
+        public Screen(Cinema cinema, string name, int rows, int seatsPerRow)
         {
             if (cinema == null)
             {
@@ -19,9 +24,21 @@ namespace Domain.Aggregates.Cinemas
                 throw new ArgumentNullException(nameof(name));
             }
 
+            if (rows < MinRowsNumber || rows > MaxRowsNumber)
+            {
+                throw new ArgumentOutOfRangeException(nameof(rows));
+            }
+
+            if (seatsPerRow < MinSeatsPerRowNumber || seatsPerRow > MaxSeatsPerRowNumber)
+            {
+                throw new ArgumentOutOfRangeException(nameof(seatsPerRow));
+            }
+
             Cinema = cinema;
             Name = name;
             Seats = new List<Seat>();
+
+            CreateSeats(rows, seatsPerRow);
         }
 
         public int Id { get; private set; }
@@ -34,7 +51,7 @@ namespace Domain.Aggregates.Cinemas
 
         public ICollection<Seat> Seats { get; private set; }
 
-        public void CreateSeats(int rows, int seatsPerRow)
+        private void CreateSeats(int rows, int seatsPerRow)
         {
             for (int row = 1; row <= rows; row++)
             {

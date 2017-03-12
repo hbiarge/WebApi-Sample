@@ -15,7 +15,11 @@ namespace Api.IntegrationTests.Infrastructure.CollectionFixtures
 
             using (var context = new DatabaseContext())
             {
-                var firstCinema = context.Cinemas.First();
+                var firstCinema = context.Cinemas
+                    .AsNoTracking()
+                    .First();
+
+                SeedData = new SeedData(firstCinema);
             }
 
             // Build the test server
@@ -23,6 +27,8 @@ namespace Api.IntegrationTests.Infrastructure.CollectionFixtures
         }
 
         public TestServer Server { get; }
+
+        public SeedData SeedData { get; }
 
         public void Dispose()
         {

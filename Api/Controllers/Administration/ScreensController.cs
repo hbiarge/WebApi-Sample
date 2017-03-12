@@ -4,6 +4,7 @@ using Api.BindingModels;
 using Api.Infrastructure;
 using Aplication.Commands;
 using MediatR;
+using System.Net;
 
 namespace Api.Controllers
 {
@@ -18,6 +19,13 @@ namespace Api.Controllers
         }
 
         [HttpGet]
+        [Route]
+        public IHttpActionResult GetScreens()
+        {
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [HttpGet]
         [Route("{screenId:int}", Name = "GetScreen")]
         public IHttpActionResult GetScreen(int cinemaId, int screenId)
         {
@@ -29,7 +37,7 @@ namespace Api.Controllers
         [ValidateModel]
         public async Task<IHttpActionResult> CreateScreen(
             int cinemaId,
-            ScreenBindingModel model)
+            CreateScreenBindingModel model)
         {
             var response = await _mediator.Send(new CreateScreenCommand(
                 cinemaId: cinemaId,

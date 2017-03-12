@@ -2,6 +2,7 @@
 using System.Web.Http;
 using Aplication.Queries;
 using MediatR;
+using System.Net;
 
 namespace Api.Controllers
 {
@@ -22,6 +23,13 @@ namespace Api.Controllers
             var response = await _mediator.Send(new GetCinemasQuery());
 
             return Ok(response.Cinemas);
+        }
+
+        [HttpGet]
+        [Route("cinemaId:int")]
+        public IHttpActionResult GetCinema(int cinemaId)
+        {
+            return StatusCode(HttpStatusCode.NoContent);
         }
     }
 }

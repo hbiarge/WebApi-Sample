@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Net.Http.Headers;
 
 namespace Api.BindingModels
 {
-    public class ScreenBindingModel
+    public class CreateScreenBindingModel
     {
         [Required]
         [MaxLength(100)]

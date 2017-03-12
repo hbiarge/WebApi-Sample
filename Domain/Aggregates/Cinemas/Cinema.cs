@@ -18,7 +18,7 @@ namespace Domain.Aggregates.Cinemas
 
             Name = name;
             Screens = new List<Screen>();
-            Fimls = new List<Film>();
+            Films = new List<Film>();
         }
 
         public int Id { get; private set; }
@@ -27,7 +27,7 @@ namespace Domain.Aggregates.Cinemas
 
         public ICollection<Screen> Screens { get; private set; }
 
-        public ICollection<Film> Fimls { get; private set; }
+        public ICollection<Film> Films { get; private set; }
 
         public Screen CreateScreen(string name, int rows, int seatsPerRow)
         {
@@ -36,8 +36,7 @@ namespace Domain.Aggregates.Cinemas
                 throw new ArgumentNullException(nameof(name));
             }
 
-            var screen = new Screen(this, name);
-            screen.CreateSeats(rows, seatsPerRow);
+            var screen = new Screen(this, name, rows, seatsPerRow);
 
             Screens.Add(screen);
 
@@ -51,7 +50,7 @@ namespace Domain.Aggregates.Cinemas
                 throw new ArgumentNullException(nameof(film));
             }
 
-            Fimls.Add(film);
+            Films.Add(film);
         }
 
         public Session CreateSession(Screen screen, Film film, DateTime start)

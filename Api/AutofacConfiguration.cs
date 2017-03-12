@@ -11,7 +11,7 @@ namespace Api
     {
         public static void Configure(ContainerBuilder builder)
         {
-            builder.RegisterApiControllers(typeof(CinemasController).Assembly);
+            builder.RegisterApiControllers(typeof(FilmsController).Assembly);
 
             builder.RegisterAssemblyTypes(typeof(IMediator).Assembly)
                 .AsImplementedInterfaces();

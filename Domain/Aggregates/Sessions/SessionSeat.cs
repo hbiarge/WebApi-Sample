@@ -37,7 +37,7 @@ namespace Domain.Aggregates.Sessions
 
         public Ticket Ticket { get; private set; }
 
-        public Ticket Sell(decimal price)
+        public void Sell(decimal price)
         {
             if (Sold)
             {
@@ -45,12 +45,13 @@ namespace Domain.Aggregates.Sessions
             }
 
             Sold = true;
-            return new Ticket(this, price);
+            Ticket = new Ticket(this, price);
         }
 
-        public void CancelReservation()
+        public void UndoSell()
         {
             Sold = false;
+            Ticket = null;
         }
     }
 }

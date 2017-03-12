@@ -54,6 +54,9 @@
     <Compile Include="Aggregates\Sessions\SessionSeat.cs" />
     <Compile Include="Aggregates\Sessions\Ticket.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Aggregates\Cinemas\Cinemas.cd" />
+    <None Include="Aggregates\Sessions\Sessions.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

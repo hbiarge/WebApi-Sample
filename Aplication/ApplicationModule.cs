@@ -7,9 +7,7 @@ namespace Aplication
     {
         protected override void Load(ContainerBuilder builder)
         {
-            var assembly = GetType().Assembly;
-
-            // Register Behaviors
+            // Manualy register behaviors
             builder.RegisterGeneric(typeof(TimingBehavior<,>))
                 .AsImplementedInterfaces();
             builder.RegisterGeneric(typeof(LoggingBehavior<,>))
@@ -17,9 +15,10 @@ namespace Aplication
             builder.RegisterGeneric(typeof(ValidationBehavior<,>))
                 .AsImplementedInterfaces();
 
-            // Register Handlers
+            // Scan assembly for other registrations
+            var assembly = GetType().Assembly;
+
             builder.RegisterAssemblyTypes(assembly)
-                .Where(t => t.Name.EndsWith("Behavior") == false)
                 .AsImplementedInterfaces();
         }
     }
