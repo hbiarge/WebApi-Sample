@@ -22,7 +22,7 @@ namespace Infrastructure.Repositories
         {
             return await _context.Cinemas
                 .Include(x => x.Screens)
-                .Include(x => x.Fimls)
+                .Include(x => x.Films)
                 .FirstOrDefaultAsync(x => x.Id == cinemaId);
         }
     }

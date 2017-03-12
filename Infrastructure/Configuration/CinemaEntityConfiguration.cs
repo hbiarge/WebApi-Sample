@@ -18,7 +18,7 @@ namespace Infrastructure.Configuration
             HasMany(x => x.Screens)
                 .WithRequired(x => x.Cinema);
 
-            HasMany(x => x.Fimls)
+            HasMany(x => x.Films)
                 .WithMany(x => x.Cinemas);
         }
     }

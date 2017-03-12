@@ -41,6 +41,8 @@ namespace Domain.Aggregates.Sessions
 
         public Film Film { get; private set; }
 
+        public bool IsPublished { get; private set; }
+
         public DateTime Start { get; private set; }
 
         public DateTime End => Start.Add(TimeSpan.FromMinutes(Film.DurationInMinutes));

@@ -30,7 +30,7 @@ namespace Api.IntegrationTests
 
             // Overriden configurations
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
-
+            
             app.UseAutofacMiddleware(container);
             app.UseAutofacWebApi(config);
 

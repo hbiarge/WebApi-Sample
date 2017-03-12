@@ -1,7 +1,10 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using Api.Infrastructure;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Web.Http.ExceptionHandling;
+using Api.Infrastructure.Services;
 
 namespace Api
 {
@@ -17,12 +20,21 @@ namespace Api
 
             // Show errors to local requests
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.LocalOnly;
-            
+
             // Remove Xml serializer
             config.Formatters.Remove(config.Formatters.XmlFormatter);
 
-            // Json serialization settings
+            CustomizeServices(config);
+
             ConfigureJsonSerialization(config.Formatters.JsonFormatter.SerializerSettings);
+        }
+
+        private static void CustomizeServices(HttpConfiguration config)
+        {
+            config.Services.Replace(typeof(IExceptionLogger), new CustomExceptionLogger());
+            config.Services.Replace(typeof(IExceptionHandler), new CustomExceptionHandler());
+
+            //config.Services.Replace(typeof(System.Web.Http.Tracing.ITraceWriter), new CustomTraceWritter());
         }
 
         private static void ConfigureJsonSerialization(JsonSerializerSettings serializerSettings)
