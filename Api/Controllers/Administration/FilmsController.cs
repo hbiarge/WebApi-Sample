@@ -1,11 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
 using System.Web.Http;
-using Aplication.Queries;
-using MediatR;
-using System.Net;
 using Api.Infrastructure;
+using MediatR;
 
-namespace Api.Controllers
+namespace Api.Controllers.Administration
 {
     [RoutePrefix("films")]
     public class FilmsController : ApiController
@@ -17,6 +15,7 @@ namespace Api.Controllers
             _mediator = mediator;
         }
 
+        // GET: films
         [HttpGet]
         [Route]
         public IHttpActionResult GetFilms()
@@ -24,6 +23,7 @@ namespace Api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        // POST: films/1
         [HttpGet]
         [Route("filmId:int")]
         public IHttpActionResult GetFilm(int filmId)
@@ -31,6 +31,7 @@ namespace Api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        // POST: films
         [HttpPost]
         [Route]
         [ValidateModel]

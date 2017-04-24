@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Aplication.Queries;
 using MediatR;
-using System.Net;
 
-namespace Api.Controllers
+namespace Api.Controllers.Administration
 {
     [RoutePrefix("cinemas")]
     public class CinemasController : ApiController
@@ -16,6 +16,7 @@ namespace Api.Controllers
             _mediator = mediator;
         }
 
+        // GET: cinemas
         [HttpGet]
         [Route]
         public async Task<IHttpActionResult> GetCinemas()
@@ -25,6 +26,7 @@ namespace Api.Controllers
             return Ok(response.Cinemas);
         }
 
+        // GET: cinemas/1
         [HttpGet]
         [Route("cinemaId:int")]
         public IHttpActionResult GetCinema(int cinemaId)

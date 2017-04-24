@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Api.Controllers;
+using Api.Controllers.Administration;
 using Aplication;
 using Autofac;
 using Autofac.Integration.WebApi;

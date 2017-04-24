@@ -42,6 +42,7 @@ namespace Api
             serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             serializerSettings.NullValueHandling = NullValueHandling.Ignore;
             serializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+            serializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         }
     }
 }
