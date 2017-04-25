@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
+﻿using System.Web.Http;
 using Acheve.Owin.Testing.Security;
 using Autofac;
 using Autofac.Integration.WebApi;

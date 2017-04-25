@@ -32,7 +32,7 @@ namespace Infrastructure
             modelBuilder.Configurations.Add(new TicketEntityConfiguration());
         }
 
-        public async Task CommitAsync()
+        async Task IUnitOfWork.CommitAsync()
         {
             await SaveChangesAsync();
         }

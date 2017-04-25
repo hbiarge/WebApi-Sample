@@ -1,5 +1,6 @@
 ﻿
 using Autofac;
+using Domain;
 
 namespace Infrastructure
 {
@@ -10,6 +11,7 @@ namespace Infrastructure
             // Manually register DbContext
             builder.Register(c => new DatabaseContext())
                 .AsSelf()
+                .As<IUnitOfWork>()
                 .InstancePerRequest();
 
             // Scan assembly for other registrations

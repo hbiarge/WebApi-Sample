@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
+﻿using System.Web.Http;
 using MediatR;
 
 namespace Api.Controllers.Ticketing
 {
+    [RoutePrefix("cinemas/{cinemaId:int}/ticketing")]
     public class TicketsController : ApiController
     {
         private readonly IMediator _mediator;

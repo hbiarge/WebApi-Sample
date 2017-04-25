@@ -25,7 +25,7 @@ namespace Api.Controllers.Administration
 
         // POST: films/1
         [HttpGet]
-        [Route("filmId:int")]
+        [Route("{filmId:int}")]
         public IHttpActionResult GetFilm(int filmId)
         {
             return StatusCode(HttpStatusCode.NoContent);

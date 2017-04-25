@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Domain
+namespace Domain.UnitTests
 {
-    public interface IRepository
+    public class Class1
     {
-        IUnitOfWork UnitOfWork { get; }
     }
 }

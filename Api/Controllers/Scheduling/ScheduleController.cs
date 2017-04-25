@@ -7,18 +7,19 @@ using MediatR;
 namespace Api.Controllers.Scheduling
 {
     [RoutePrefix("cinemas/{cinemaId:int}/schedule")]
-    public class SessionsController : ApiController
+    public class ScheduleController : ApiController
     {
         private readonly IMediator _mediator;
 
-        public SessionsController(IMediator mediator)
+        public ScheduleController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
         // GET: cinemas/1/schedule/2017/4/3
         [HttpGet]
-        [Route("{year:range(2017,2020)}/{month:range(1,12)}/{day:range(1/31)}")]
+        [Route("{year:int}/{month:range(1,12)}/{day:range(1,31)}")]
+        //[ValidateDate]
         public IHttpActionResult GetSchedule(
             int cinemaId,
             int year,

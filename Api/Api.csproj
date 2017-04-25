@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.4.0\lib\net45\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=4.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.5.0\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Integration.WebApi, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.WebApi2.4.0.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
@@ -72,13 +72,14 @@
     <Compile Include="Controllers\Administration\ScreensController.cs" />
     <Compile Include="Controllers\Administration\CinemasController.cs" />
     <Compile Include="Controllers\Administration\SessionsController.cs" />
-    <Compile Include="Controllers\Scheduling\SessionsController.cs" />
+    <Compile Include="Controllers\Scheduling\ScheduleController.cs" />
     <Compile Include="Controllers\Ticketing\TicketsController.cs" />
     <Compile Include="Infrastructure\CustomAuthorize.cs" />
     <Compile Include="Infrastructure\DateBuilder.cs" />
     <Compile Include="Infrastructure\Services\CustomExceptionHandler.cs" />
     <Compile Include="Infrastructure\Services\CustomExceptionLogger.cs" />
     <Compile Include="Infrastructure\Services\CustomTraceWritter.cs" />
+    <Compile Include="Infrastructure\ValidateDateAttribute.cs" />
     <Compile Include="Infrastructure\ValidateModelAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

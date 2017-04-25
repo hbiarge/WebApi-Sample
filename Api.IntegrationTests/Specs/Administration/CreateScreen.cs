@@ -1,16 +1,14 @@
 using System.Net.Http;
-using System.Net.Http.Formatting;
 using System.Threading.Tasks;
-using Acheve.Owin.Testing.Security;
 using Api.BindingModels;
 using Api.IntegrationTests.Infrastructure;
 using Api.IntegrationTests.Infrastructure.CollectionFixtures;
 using Aplication.Commands;
-using Aplication.Queries.ViewModels;
 using FluentAssertions;
+using Microsoft.Owin.Testing;
 using Xunit;
 
-namespace Api.IntegrationTests.Specs
+namespace Api.IntegrationTests.Specs.Administration
 {
     [Collection(Collections.Database)]
     public class CreateScreen
@@ -36,7 +34,7 @@ namespace Api.IntegrationTests.Specs
             var endpoint = $"cinemas/{_fixture.SeedData.Cinema.Id}/screens";
             var response = await _fixture.Server.CreateRequest(endpoint)
                 .WithIdentity(Identities.User)
-                .And(x => x.Content = new ObjectContent(_model.GetType(), _model, new JsonMediaTypeFormatter()))
+                .WithJsonContent(_model)
                 .PostAsync();
 
             await response.IsSuccessStatusCodeOrTrow();

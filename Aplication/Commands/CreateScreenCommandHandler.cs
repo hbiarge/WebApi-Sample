@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Aplication.Queries.ViewModels;
+using Domain;
 using Domain.Aggregates.Cinemas;
 using MediatR;
 
@@ -7,10 +8,12 @@ namespace Aplication.Commands
 {
     public class CreateScreenCommandHandler : IAsyncRequestHandler<CreateScreenCommand, CreateScreenResponse>
     {
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ICinemaRepository _cinemaRepository;
 
-        public CreateScreenCommandHandler(ICinemaRepository cinemaRepository)
+        public CreateScreenCommandHandler(IUnitOfWork unitOfWork,ICinemaRepository cinemaRepository)
         {
+            _unitOfWork = unitOfWork;
             _cinemaRepository = cinemaRepository;
         }
 
@@ -23,7 +26,7 @@ namespace Aplication.Commands
                 message.ScreenRows,
                 message.ScreenSeatsPerRow);
 
-            await _cinemaRepository.UnitOfWork.CommitAsync();
+            await _unitOfWork.CommitAsync();
 
             return new CreateScreenResponse(ScreenViewModel.FromScreen(screen));
         }

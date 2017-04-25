@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Api.BindingModels;
 using Api.Infrastructure;
-using Aplication.Commands;
 using MediatR;
 
 namespace Api.Controllers.Administration
 {
-    [RoutePrefix("cinema/{cinemaId:int}/sessions")]
+    [RoutePrefix("cinemas/{cinemaId:int}/sessions")]
     public class SessionsController : ApiController
     {
         private readonly IMediator _mediator;

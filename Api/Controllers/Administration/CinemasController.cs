@@ -28,7 +28,7 @@ namespace Api.Controllers.Administration
 
         // GET: cinemas/1
         [HttpGet]
-        [Route("cinemaId:int")]
+        [Route("{cinemaId:int}")]
         public IHttpActionResult GetCinema(int cinemaId)
         {
             return StatusCode(HttpStatusCode.NoContent);

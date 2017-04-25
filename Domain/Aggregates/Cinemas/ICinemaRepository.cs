@@ -2,7 +2,7 @@
 
 namespace Domain.Aggregates.Cinemas
 {
-    public interface ICinemaRepository: IRepository
+    public interface ICinemaRepository
     {
         Task<Cinema> GetCinemaById(int cinemaId);
     }
