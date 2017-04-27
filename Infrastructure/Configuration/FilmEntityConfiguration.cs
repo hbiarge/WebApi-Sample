@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 using Domain.Aggregates.Cinemas;
-using Domain.Aggregates.Fims;
+using Domain.Aggregates.Films;
 
 namespace Infrastructure.Configuration
 {
@@ -18,6 +18,9 @@ namespace Infrastructure.Configuration
 
             Property(x => x.DurationInMinutes)
                 .IsRequired();
+
+            HasMany(x => x.Cinemas)
+                .WithMany();
         }
     }
 }

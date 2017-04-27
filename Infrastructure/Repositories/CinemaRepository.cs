@@ -13,16 +13,12 @@ namespace Infrastructure.Repositories
         public CinemaRepository(DatabaseContext context)
         {
             _context = context;
-            UnitOfWork = _context;
         }
-
-        public IUnitOfWork UnitOfWork { get; }
 
         public async Task<Cinema> GetCinemaById(int cinemaId)
         {
             return await _context.Cinemas
                 .Include(x => x.Screens)
-                .Include(x => x.Films)
                 .FirstOrDefaultAsync(x => x.Id == cinemaId);
         }
     }

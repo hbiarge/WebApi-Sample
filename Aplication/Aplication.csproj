@@ -67,7 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationModule.cs" />
+    <Compile Include="ApplicationAutofacModule.cs" />
     <Compile Include="Pipeline\LoggingBehavior.cs" />
     <Compile Include="Pipeline\TimingBehavior.cs" />
     <Compile Include="Commands\CreateScreenCommand.cs" />

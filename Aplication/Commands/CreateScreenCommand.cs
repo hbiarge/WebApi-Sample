@@ -28,21 +28,21 @@ namespace Aplication.Commands
         public int ScreenSeatsPerRow { get; }
     }
 
-    //public class CreateScreenCommandValidator : AbstractValidator<CreateScreenCommand>
-    //{
-    //    public CreateScreenCommandValidator()
-    //    {
-    //        RuleFor(x => x.CinemaId)
-    //            .GreaterThan(0);
-    //        RuleFor(x => x.ScreenName)
-    //            .NotNull()
-    //            .Length(3, 100);
-    //        RuleFor(x => x.ScreenRows)
-    //            .InclusiveBetween(Screen.MinRowsNumber, Screen.MaxRowsNumber);
-    //        RuleFor(x => x.ScreenSeatsPerRow)
-    //            .InclusiveBetween(Screen.MinSeatsPerRowNumber, Screen.MaxSeatsPerRowNumber);
-    //    }
-    //}
+    public class CreateScreenCommandValidator : AbstractValidator<CreateScreenCommand>
+    {
+        public CreateScreenCommandValidator()
+        {
+            RuleFor(x => x.CinemaId)
+                .GreaterThan(0);
+            RuleFor(x => x.ScreenName)
+                .NotNull()
+                .Length(3, 100);
+            RuleFor(x => x.ScreenRows)
+                .InclusiveBetween(Screen.MinRowsNumber, Screen.MaxRowsNumber);
+            RuleFor(x => x.ScreenSeatsPerRow)
+                .InclusiveBetween(Screen.MinSeatsPerRowNumber, Screen.MaxSeatsPerRowNumber);
+        }
+    }
 
     public class CreateScreenResponse
     {

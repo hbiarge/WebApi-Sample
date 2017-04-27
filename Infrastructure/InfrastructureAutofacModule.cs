@@ -4,7 +4,7 @@ using Domain;
 
 namespace Infrastructure
 {
-    public class InfrastructureModule : Autofac.Module
+    public class InfrastructureAutofacModule : Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)
         {

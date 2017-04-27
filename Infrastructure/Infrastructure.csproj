@@ -53,7 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InfrastructureModule.cs" />
+    <Compile Include="InfrastructureAutofacModule.cs" />
     <Compile Include="Configuration\FilmEntityConfiguration.cs" />
     <Compile Include="Configuration\ScreenEntityConfiguration.cs" />
     <Compile Include="Configuration\SeatEntityConfiguration.cs" />
@@ -72,6 +72,10 @@
     <Compile Include="Migrations\201703121123370_SessionIsPublished.cs" />
     <Compile Include="Migrations\201703121123370_SessionIsPublished.Designer.cs">
       <DependentUpon>201703121123370_SessionIsPublished.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704252116592_Refactor.cs" />
+    <Compile Include="Migrations\201704252116592_Refactor.Designer.cs">
+      <DependentUpon>201704252116592_Refactor.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703121123370_SessionIsPublished.resx">
       <DependentUpon>201703121123370_SessionIsPublished.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704252116592_Refactor.resx">
+      <DependentUpon>201704252116592_Refactor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

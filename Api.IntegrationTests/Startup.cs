@@ -11,26 +11,44 @@ namespace Api.IntegrationTests
     {
         public void Configuration(IAppBuilder app)
         {
-            var builder = new ContainerBuilder();
-            AutofacConfiguration.Configure(builder);
-            builder.RegisterModule<InfrastructureModule>();
+            var container = BuildContainer();
+            var config = BuidHttpConfiguration(container);
 
-            var container = builder.Build();
-
-            var config = new HttpConfiguration
-            {
-                DependencyResolver = new AutofacWebApiDependencyResolver(container)
-            };
-            ApiConfiguration.Configure(config);
-
-            // Overriden configurations
-            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
-            
+            // Configure OWIN pipeline
             app.UseAutofacMiddleware(container);
             app.UseAutofacWebApi(config);
 
             app.UseTestServerAuthentication();
             app.UseWebApi(config);
+        }
+
+        private static IContainer BuildContainer()
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterModule(new ApiAutofacModule
+            {
+                SampleConfiguration = true
+            });
+            builder.RegisterModule<InfrastructureAutofacModule>();
+
+            return builder.Build();
+        }
+
+        private static HttpConfiguration BuidHttpConfiguration(IContainer container)
+        {
+            // Create HttpConfiguration
+            var config = new HttpConfiguration
+            {
+                DependencyResolver = new AutofacWebApiDependencyResolver(container)
+            };
+
+            // Configure common options
+            ApiConfiguration.Configure(config);
+
+            // Overriden configurations
+            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
+
+            return config;
         }
     }
 }

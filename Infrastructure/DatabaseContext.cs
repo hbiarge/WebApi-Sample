@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Domain;
 using Domain.Aggregates.Cinemas;
-using Domain.Aggregates.Fims;
+using Domain.Aggregates.Films;
 using Domain.Aggregates.Sessions;
 using Infrastructure.Configuration;
 

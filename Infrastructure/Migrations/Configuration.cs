@@ -1,5 +1,4 @@
 using Domain.Aggregates.Cinemas;
-using Domain.Aggregates.Fims;
 
 namespace Infrastructure.Migrations
 {

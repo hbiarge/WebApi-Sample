@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Domain.Aggregates.Cinemas;
-using Domain.Aggregates.Fims;
+using Domain.Aggregates.Films;
 
 namespace Domain.Aggregates.Sessions
 {
@@ -54,7 +54,6 @@ namespace Domain.Aggregates.Sessions
             foreach (var seat in Screen.Seats)
             {
                 var sessionSeat = new SessionSeat(this, seat);
-                //Seats.Add(sessionSeat);
                 seat.Sessions.Add(sessionSeat);
             }
         }

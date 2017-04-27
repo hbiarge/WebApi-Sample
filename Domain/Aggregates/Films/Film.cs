@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Domain.Aggregates.Cinemas;
 
-namespace Domain.Aggregates.Fims
+namespace Domain.Aggregates.Films
 {
     public class Film
     {

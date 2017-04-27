@@ -44,9 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aggregates\Cinemas\Cinema.cs" />
-    <Compile Include="Aggregates\Fims\Film.cs" />
+    <Compile Include="Aggregates\Films\Film.cs" />
     <Compile Include="Aggregates\Cinemas\ICinemaRepository.cs" />
-    <Compile Include="Aggregates\Fims\IFilmRepository.cs" />
+    <Compile Include="Aggregates\Films\IFilmRepository.cs" />
     <Compile Include="Aggregates\Sessions\ISessionRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,6 +59,7 @@
   <ItemGroup>
     <None Include="Aggregates\Cinemas\Cinemas.cd" />
     <None Include="Aggregates\Sessions\Sessions.cd" />
+    <None Include="Aggregates\Films\FIlms.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

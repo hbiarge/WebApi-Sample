@@ -1,5 +1,5 @@
 ﻿using Domain;
-using Domain.Aggregates.Fims;
+using Domain.Aggregates.Films;
 
 namespace Infrastructure.Repositories
 {
@@ -10,9 +10,6 @@ namespace Infrastructure.Repositories
         public FilmRepository(DatabaseContext context)
         {
             _context = context;
-            UnitOfWork = _context;
         }
-
-        public IUnitOfWork UnitOfWork { get; }
     }
 }

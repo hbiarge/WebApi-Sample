@@ -3,7 +3,7 @@ using Autofac;
 
 namespace Aplication
 {
-    public class ApplicationModule : Autofac.Module
+    public class ApplicationAutofacModule : Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)
         {

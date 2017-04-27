@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Domain.Aggregates.Fims;
+using Domain.Aggregates.Films;
 using Domain.Aggregates.Sessions;
 
 namespace Domain.Aggregates.Cinemas
@@ -18,7 +18,6 @@ namespace Domain.Aggregates.Cinemas
 
             Name = name;
             Screens = new List<Screen>();
-            Films = new List<Film>();
         }
 
         public int Id { get; private set; }
@@ -26,8 +25,6 @@ namespace Domain.Aggregates.Cinemas
         public string Name { get; private set; }
 
         public ICollection<Screen> Screens { get; private set; }
-
-        public ICollection<Film> Films { get; private set; }
 
         public Screen CreateScreen(string name, int rows, int seatsPerRow)
         {
@@ -43,20 +40,10 @@ namespace Domain.Aggregates.Cinemas
             return screen;
         }
 
-        public void AddFilm(Film film)
-        {
-            if (film == null)
-            {
-                throw new ArgumentNullException(nameof(film));
-            }
-
-            Films.Add(film);
-        }
-
         public Session CreateSession(Screen screen, Film film, DateTime start)
         {
             var session = new Session(screen, film, start);
-            
+
             return session;
         }
     }

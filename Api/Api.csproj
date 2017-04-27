@@ -66,7 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiConfiguration.cs" />
-    <Compile Include="AutofacConfiguration.cs" />
+    <Compile Include="ApiAutofacModule.cs" />
     <Compile Include="BindingModels\CreateScreenBindingModel.cs" />
     <Compile Include="Controllers\Administration\FilmsController.cs" />
     <Compile Include="Controllers\Administration\ScreensController.cs" />
@@ -81,6 +81,7 @@
     <Compile Include="Infrastructure\Services\CustomTraceWritter.cs" />
     <Compile Include="Infrastructure\ValidateDateAttribute.cs" />
     <Compile Include="Infrastructure\ValidateModelAttribute.cs" />
+    <Compile Include="Infrastructure\ValidationErrorAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
