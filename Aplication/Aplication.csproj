@@ -74,11 +74,17 @@
     <Compile Include="Commands\CreateScreenCommandHandler.cs" />
     <Compile Include="Pipeline\ValidationBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\GetCinemaQuery.cs" />
     <Compile Include="Queries\GetCinemasQuery.cs" />
+    <Compile Include="Queries\GetCinemaQueryHandler.cs" />
+    <Compile Include="Queries\GetScheduleQueryHandler.cs" />
     <Compile Include="Queries\GetCinemasQueryHandler.cs" />
+    <Compile Include="Queries\GetScheduleQuery.cs" />
     <Compile Include="Queries\Infrastructure\DefautConnectionProvider.cs" />
     <Compile Include="Queries\Infrastructure\IConnectionProvider.cs" />
+    <Compile Include="Queries\QueryResponse.cs" />
     <Compile Include="Queries\ViewModels\CinemaViewModel.cs" />
+    <Compile Include="Queries\ViewModels\ScheduleViewModel.cs" />
     <Compile Include="Queries\ViewModels\ScreenViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

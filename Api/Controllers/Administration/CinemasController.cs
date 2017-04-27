@@ -23,15 +23,20 @@ namespace Api.Controllers.Administration
         {
             var response = await _mediator.Send(new GetCinemasQuery());
 
-            return Ok(response.Cinemas);
+            return Ok(response.Data);
         }
 
         // GET: cinemas/1
         [HttpGet]
         [Route("{cinemaId:int}")]
-        public IHttpActionResult GetCinema(int cinemaId)
+        public async Task<IHttpActionResult> GetCinema(int cinemaId)
         {
-            return StatusCode(HttpStatusCode.NoContent);
+            var response = await _mediator.Send(new GetCinemaQuery
+            {
+                CinemaId = cinemaId
+            });
+
+            return Ok(response.Data);
         }
     }
 }

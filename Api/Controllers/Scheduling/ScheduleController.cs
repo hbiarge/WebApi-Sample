@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Api.Infrastructure;
+using Aplication.Queries;
 using MediatR;
 
 namespace Api.Controllers.Scheduling
@@ -19,8 +21,8 @@ namespace Api.Controllers.Scheduling
         // GET: cinemas/1/schedule/2017/4/3
         [HttpGet]
         [Route("{year:int}/{month:range(1,12)}/{day:range(1,31)}")]
-        //[ValidateDate]
-        public IHttpActionResult GetSchedule(
+        //[ValidateDate] // Date validation as filter
+        public async Task<IHttpActionResult> GetSchedule(
             int cinemaId,
             int year,
             int month,
@@ -31,7 +33,13 @@ namespace Api.Controllers.Scheduling
                 return BadRequest();
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            var response = await _mediator.Send(new GetScheduleQuery
+            {
+                CinemaId = cinemaId,
+                Date = date
+            });
+
+            return Ok(response.Data);
         }
     }
 }

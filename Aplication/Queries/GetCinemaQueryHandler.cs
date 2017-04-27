@@ -7,28 +7,29 @@ using Dapper;
 
 namespace Aplication.Queries
 {
-    public class GetCinemasQueryHandler : IAsyncRequestHandler<GetCinemasQuery, QueryResponse<CinemaViewModel[]>>
+    public class GetCinemaQueryHandler : IAsyncRequestHandler<GetCinemaQuery, QueryResponse<CinemaViewModel>>
     {
         private readonly IConnectionProvider _connectionProvider;
 
-        public GetCinemasQueryHandler(IConnectionProvider connectionProvider)
+        public GetCinemaQueryHandler(IConnectionProvider connectionProvider)
         {
             _connectionProvider = connectionProvider;
         }
 
-        public async Task<QueryResponse<CinemaViewModel[]>> Handle(GetCinemasQuery message)
+        public async Task<QueryResponse<CinemaViewModel>> Handle(GetCinemaQuery message)
         {
             using (var conn = _connectionProvider.CreateConnection())
             {
                 const string sql = @"
-SELECT C.Id, C.Name 
+SELECT C.Id, C.Name
 FROM cine.Cinemas C
+WHERE C.Id = @id
 ";
-                var cinemas = await conn.QueryAsync<CinemaViewModel>(sql);
+                var cinema = await conn.QueryFirstOrDefaultAsync<CinemaViewModel>(sql, new { Id = message.CinemaId });
 
-                return new QueryResponse<CinemaViewModel[]>
+                return new QueryResponse<CinemaViewModel>
                 {
-                    Data = cinemas.ToArray()
+                    Data = cinema
                 };
             }
         }
