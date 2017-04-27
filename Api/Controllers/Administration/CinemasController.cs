@@ -1,12 +1,11 @@
-﻿using System.Net;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Http;
 using Aplication.Queries;
 using MediatR;
 
 namespace Api.Controllers.Administration
 {
-    [RoutePrefix("cinemas")]
+    [RoutePrefix("api/cinemas")]
     public class CinemasController : ApiController
     {
         private readonly IMediator _mediator;

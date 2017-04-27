@@ -18,7 +18,7 @@ namespace Infrastructure.Initializers
 
             var cinema = new Cinema("Palafox");
             var screen1 = cinema.CreateScreen(name: "Aneto", rows: 5, seatsPerRow: 5);
-            var screen2 = cinema.CreateScreen(name: "Monte perdido", rows: 6, seatsPerRow: 6);
+            var screen2 = cinema.CreateScreen(name: "Monte Perdido", rows: 6, seatsPerRow: 6);
             var screen3 = cinema.CreateScreen(name: "Posets", rows: 7, seatsPerRow: 7);
             batman.Cinemas.Add(cinema);
 

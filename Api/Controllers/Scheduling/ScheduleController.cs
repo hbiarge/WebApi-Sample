@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Api.Infrastructure;
@@ -8,7 +7,7 @@ using MediatR;
 
 namespace Api.Controllers.Scheduling
 {
-    [RoutePrefix("cinemas/{cinemaId:int}/schedule")]
+    [RoutePrefix("api/cinemas/{cinemaId:int}/schedule")]
     public class ScheduleController : ApiController
     {
         private readonly IMediator _mediator;

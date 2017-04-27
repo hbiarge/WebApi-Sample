@@ -22,7 +22,7 @@ namespace Api.IntegrationTests.Specs.Administration
             _fixture = fixture;
             _model = new CreateScreenBindingModel
             {
-                Name = "12",
+                Name = "Tendeñera",
                 Rows = 2,
                 SeatsPerRow = 2
             };
@@ -31,7 +31,7 @@ namespace Api.IntegrationTests.Specs.Administration
         [Fact]
         public async Task CreateScreen_With_Valid_Data_Should_Return_Created()
         {
-            var endpoint = $"cinemas/{_fixture.SeedData.Cinema.Id}/screens";
+            var endpoint = $"api/cinemas/{_fixture.SeedData.Cinema.Id}/screens";
             var response = await _fixture.Server.CreateRequest(endpoint)
                 .WithIdentity(Identities.User)
                 .WithJsonContent(_model)

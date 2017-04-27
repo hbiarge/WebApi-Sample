@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Api.Controllers.Administration
 {
-    [RoutePrefix("films")]
+    [RoutePrefix("api/films")]
     public class FilmsController : ApiController
     {
         private readonly IMediator _mediator;

@@ -20,8 +20,9 @@ namespace Aplication.Queries
         {
             using (var conn = _connectionProvider.CreateConnection())
             {
+                // TODO: Add paging, sorting and filtering
                 const string sql = @"
-SELECT C.Id, C.Name 
+SELECT TOP 10 C.Id, C.Name 
 FROM cine.Cinemas C
 ";
                 var cinemas = await conn.QueryAsync<CinemaViewModel>(sql);

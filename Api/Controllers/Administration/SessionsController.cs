@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Api.Controllers.Administration
 {
-    [RoutePrefix("cinemas/{cinemaId:int}/sessions")]
+    [RoutePrefix("api/cinemas/{cinemaId:int}/sessions")]
     public class SessionsController : ApiController
     {
         private readonly IMediator _mediator;
@@ -38,6 +38,44 @@ namespace Api.Controllers.Administration
         [Route]
         [ValidateModel]
         public async Task<IHttpActionResult> CreateSession(
+            int cinemaId,
+            object model)
+        {
+            //var response = await _mediator.Send(new CreateScreenCommand(
+            //    cinemaId: cinemaId,
+            //    screenName: model.Name,
+            //    screenRows: model.Rows,
+            //    screenSeatsPerRow: model.SeatsPerRow));
+
+            //var url = Url.Route("GetScreen", new { CinemaId = cinemaId, ScreenId = response.Screen.Id });
+            //return Created(url, response.Screen);
+            throw new NotImplementedException();
+        }
+
+        // PUT: cinemas/1/sessions/1/publish
+        [HttpPut]
+        [Route("{sessionId:int}/publish")]
+        [ValidateModel]
+        public async Task<IHttpActionResult> PublishSession(
+            int cinemaId,
+            object model)
+        {
+            //var response = await _mediator.Send(new CreateScreenCommand(
+            //    cinemaId: cinemaId,
+            //    screenName: model.Name,
+            //    screenRows: model.Rows,
+            //    screenSeatsPerRow: model.SeatsPerRow));
+
+            //var url = Url.Route("GetScreen", new { CinemaId = cinemaId, ScreenId = response.Screen.Id });
+            //return Created(url, response.Screen);
+            throw new NotImplementedException();
+        }
+
+        // DELETE: cinemas/1/sessions/1/publish
+        [HttpDelete]
+        [Route("{sessionId:int}/publish")]
+        [ValidateModel]
+        public async Task<IHttpActionResult> UnpublishSession(
             int cinemaId,
             object model)
         {

@@ -8,7 +8,7 @@ using MediatR;
 
 namespace Api.Controllers.Administration
 {
-    [RoutePrefix("cinemas/{cinemaId:int}/screens")]
+    [RoutePrefix("api/cinemas/{cinemaId:int}/screens")]
     public class ScreensController : ApiController
     {
         private readonly IMediator _mediator;
@@ -53,6 +53,7 @@ namespace Api.Controllers.Administration
                 CinemaId = cinemaId,
                 ScreenId = response.Screen.Id
             });
+
             return Created(url, response.Screen);
         }
     }

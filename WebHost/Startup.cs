@@ -7,6 +7,7 @@ using Infrastructure;
 using Microsoft.Owin;
 using Owin;
 using Serilog;
+using Swashbuckle.Application;
 
 [assembly: OwinStartup(typeof(WebHost.Startup))]
 
@@ -32,7 +33,34 @@ namespace WebHost
             app.UseAutofacMiddleware(_container);
             app.DisposeScopeOnAppDisposing(_container);
 
-            app.Map("/api", ApiConfiguration);
+            var config = new HttpConfiguration
+            {
+                DependencyResolver = new AutofacWebApiDependencyResolver(_container)
+            };
+
+            config.EnableSwagger(c => c.SingleApiVersion("v1", "Cinematic API"))
+                .EnableSwaggerUi();
+
+            // Configure common options
+            Api.ApiConfiguration.Configure(config);
+
+            // Configure middlewares pipeline
+
+            // ### Temporal authentication middleware
+            app.Use(async (context, next) =>
+            {
+                var identity = new ClaimsIdentity(new[]
+                    {
+                        new Claim(ClaimTypes.Name, "Hugo"),
+                    },
+                    "Custom");
+                context.Authentication.User = new ClaimsPrincipal(identity);
+                await next();
+            });
+            // ####
+
+            app.UseAutofacWebApi(config);
+            app.UseWebApi(config);
 
             app.UseWelcomePage();
         }
@@ -47,36 +75,6 @@ namespace WebHost
             builder.RegisterModule<InfrastructureAutofacModule>();
 
             return builder.Build();
-        }
-
-        private void ApiConfiguration(IAppBuilder api)
-        {
-            // Create HttpConfiguration
-            var config = new HttpConfiguration
-            {
-                DependencyResolver = new AutofacWebApiDependencyResolver(_container)
-            };
-
-            // Configure common options
-            Api.ApiConfiguration.Configure(config);
-
-            // Configure middlewares pipeline
-
-            // ### Temporal authentication middleware
-            api.Use(async (context, next) =>
-            {
-                var identity = new ClaimsIdentity(new[]
-                {
-                    new Claim(ClaimTypes.Name, "Hugo"),
-                },
-                "Custom");
-                context.Authentication.User = new ClaimsPrincipal(identity);
-                await next();
-            });
-            // ####
-
-            api.UseAutofacWebApi(config);
-            api.UseWebApi(config);
         }
     }
 }

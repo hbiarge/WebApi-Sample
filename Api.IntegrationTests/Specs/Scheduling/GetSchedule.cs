@@ -22,7 +22,7 @@ namespace Api.IntegrationTests.Specs.Scheduling
         [Fact]
         public async Task GetSchedule_Should_Return_Values()
         {
-            var endpoint = $"cinemas/{_fixture.SeedData.Cinema.Id}/schedule/2017/3/5";
+            var endpoint = $"api/cinemas/{_fixture.SeedData.Cinema.Id}/schedule/2017/3/5";
             var response = await _fixture.Server.CreateRequest(endpoint)
                 .WithIdentity(Identities.User)
                 .GetAsync();

@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Api.Controllers.Ticketing
 {
-    [RoutePrefix("cinemas/{cinemaId:int}/ticketing")]
+    [RoutePrefix("api/cinemas/{cinemaId:int}/ticketing")]
     public class TicketsController : ApiController
     {
         private readonly IMediator _mediator;
