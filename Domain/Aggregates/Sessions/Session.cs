@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Domain.Aggregates.Cinemas;
 using Domain.Aggregates.Films;
 
@@ -67,6 +68,25 @@ namespace Domain.Aggregates.Sessions
             {
                 IsPublished = false;
             }
+        }
+
+        public Ticket SellSeat(int row, int number, decimal price)
+        {
+            if (IsPublished == false)
+            {
+                throw new InvalidOperationException("Can not sell not published session");
+            }
+
+            var seat = Seats.FirstOrDefault(s => s.Seat.Row == row && s.Seat.Number == number);
+
+            if (seat == null)
+            {
+                throw new InvalidOperationException("Can not find the specified seat in this screen");
+            }
+
+            seat.Sell(price);
+
+            return seat.Ticket;
         }
 
         private void CreateSeats()

@@ -1,5 +1,4 @@
 ﻿using System;
-using Domain.Aggregates.Cinemas;
 
 namespace Domain.Aggregates.Sessions
 {
@@ -19,18 +18,21 @@ namespace Domain.Aggregates.Sessions
                 throw new ArgumentOutOfRangeException(nameof(price));
             }
 
+            Id = Guid.NewGuid();
             SessionSeat = sessionSeat;
             SessionId = SessionSeat.SessionId;
             SeatId = SessionSeat.SeatId;
             Price = price;
         }
 
+        public Guid Id { get; }
+
         public int SessionId { get; private set; }
 
         public int SeatId { get; private set; }
 
         public SessionSeat SessionSeat { get; private set; }
-        
+
         public decimal Price { get; private set; }
     }
 }

@@ -28,6 +28,7 @@ namespace Infrastructure.Initializers
             if (context.Sessions.Any() == false)
             {
                 var sesion1 = cinema.CreateSession(screen1.Id, conAir, new DateTime(2017, 3, 5, 18, 0, 0));
+                sesion1.Publish();
                 var sesion2 = cinema.CreateSession(screen2.Id, batman, new DateTime(2017, 3, 5, 19, 45, 0));
                 var sesion3 = cinema.CreateSession(screen3.Id, pulpFiction, new DateTime(2017, 3, 5, 22, 0, 0));
 

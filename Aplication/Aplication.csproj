@@ -68,10 +68,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationAutofacModule.cs" />
+    <Compile Include="Commands\SellSessionSeatCommandHandler.cs" />
     <Compile Include="Commands\PublishSessionCommandHandler.cs" />
     <Compile Include="Commands\CreateSessionCommandHandler.cs" />
     <Compile Include="Commands\CreateSessionCommand.cs" />
     <Compile Include="Commands\PublishSessionCommand.cs" />
+    <Compile Include="Commands\SellSessionSeatCommand.cs" />
     <Compile Include="Pipeline\LoggingBehavior.cs" />
     <Compile Include="Pipeline\TimingBehavior.cs" />
     <Compile Include="Commands\CreateScreenCommand.cs" />
