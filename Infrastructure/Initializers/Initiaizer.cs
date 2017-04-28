@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.Linq;
 using Domain.Aggregates.Cinemas;
 using Domain.Aggregates.Films;
 
@@ -24,11 +25,14 @@ namespace Infrastructure.Initializers
 
             context.Cinemas.AddOrUpdate(c => c.Name, cinema);
 
-            var sesion1 = cinema.CreateSession(screen1, conAir, new DateTime(2017, 3, 5, 18, 0, 0));
-            var sesion2 = cinema.CreateSession(screen2, batman, new DateTime(2017, 3, 5, 19, 45, 0));
-            var sesion3 = cinema.CreateSession(screen3, pulpFiction, new DateTime(2017, 3, 5, 22, 0, 0));
+            if (context.Sessions.Any() == false)
+            {
+                var sesion1 = cinema.CreateSession(screen1.Id, conAir, new DateTime(2017, 3, 5, 18, 0, 0));
+                var sesion2 = cinema.CreateSession(screen2.Id, batman, new DateTime(2017, 3, 5, 19, 45, 0));
+                var sesion3 = cinema.CreateSession(screen3.Id, pulpFiction, new DateTime(2017, 3, 5, 22, 0, 0));
 
-            context.Sessions.AddRange(new[] { sesion1, sesion2, sesion3 });
+                context.Sessions.AddRange(new[] { sesion1, sesion2, sesion3 });
+            }
         }
     }
 }

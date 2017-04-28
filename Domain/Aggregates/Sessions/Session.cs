@@ -7,6 +7,8 @@ namespace Domain.Aggregates.Sessions
 {
     public class Session
     {
+        protected Session() { }
+
         public Session(Screen screen, Film film, DateTime start)
         {
             if (screen == null)
@@ -49,12 +51,30 @@ namespace Domain.Aggregates.Sessions
 
         public ICollection<SessionSeat> Seats { get; private set; }
 
+        public void Publish()
+        {
+            if (IsPublished)
+            {
+                return;
+            }
+
+            IsPublished = true;
+        }
+
+        public void Unpublish()
+        {
+            if (IsPublished)
+            {
+                IsPublished = false;
+            }
+        }
+
         private void CreateSeats()
         {
             foreach (var seat in Screen.Seats)
             {
                 var sessionSeat = new SessionSeat(this, seat);
-                seat.Sessions.Add(sessionSeat);
+                Seats.Add(sessionSeat);
             }
         }
     }

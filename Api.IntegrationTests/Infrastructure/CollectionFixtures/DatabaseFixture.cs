@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Infrastructure;
 using Infrastructure.Initializers;
 using Microsoft.Owin.Testing;
@@ -17,9 +18,23 @@ namespace Api.IntegrationTests.Infrastructure.CollectionFixtures
             {
                 var firstCinema = context.Cinemas
                     .AsNoTracking()
+                    .Include(c => c.Screens.Select(s => s.Seats))
                     .First();
 
-                SeedData = new SeedData(firstCinema);
+                var films = context.Films
+                    .AsNoTracking()
+                    .ToArray();
+
+                var sessions = context.Sessions
+                    .AsNoTracking()
+                    .ToArray();
+
+                SeedData = new SeedData
+                {
+                    Cinema = firstCinema,
+                    Films = films,
+                    Sessions = sessions
+                };
             }
 
             // Build the test server

@@ -68,6 +68,7 @@
     <Compile Include="ApiConfiguration.cs" />
     <Compile Include="ApiAutofacModule.cs" />
     <Compile Include="BindingModels\CreateScreenBindingModel.cs" />
+    <Compile Include="BindingModels\CreateSessionBindingModel.cs" />
     <Compile Include="Controllers\Administration\FilmsController.cs" />
     <Compile Include="Controllers\Administration\ScreensController.cs" />
     <Compile Include="Controllers\Administration\CinemasController.cs" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Domain.Aggregates.Films;
 using Domain.Aggregates.Sessions;
 
@@ -40,8 +41,15 @@ namespace Domain.Aggregates.Cinemas
             return screen;
         }
 
-        public Session CreateSession(Screen screen, Film film, DateTime start)
+        public Session CreateSession(int screenId, Film film, DateTime start)
         {
+            var screen = Screens.FirstOrDefault(s => s.Id == screenId);
+
+            if (screen==null)
+            {
+                throw new InvalidOperationException($"The screen with id [{screenId}] has not been found in this cinema");
+            }
+
             var session = new Session(screen, film, start);
 
             return session;

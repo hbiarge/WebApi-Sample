@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Aplication.Queries.ViewModels;
 using Domain;
 using Domain.Aggregates.Cinemas;
@@ -20,6 +21,11 @@ namespace Aplication.Commands
         public async Task<CreateScreenResponse> Handle(CreateScreenCommand message)
         {
             var cinema = await _cinemaRepository.GetCinemaById(message.CinemaId);
+
+            if (cinema==null)
+            {
+                throw new InvalidOperationException($"The cinema with id [{message.CinemaId}] can not be found");
+            }
 
             var screen = cinema.CreateScreen(
                 message.ScreenName,

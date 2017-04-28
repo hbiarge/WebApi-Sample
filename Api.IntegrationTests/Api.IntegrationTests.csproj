@@ -115,6 +115,9 @@
   <ItemGroup>
     <Compile Include="Infrastructure\CollectionFixtures\SeedData.cs" />
     <Compile Include="Infrastructure\HttpResponseMessageExtensions.cs" />
+    <Compile Include="Specs\Administration\UnpublishSession.cs" />
+    <Compile Include="Specs\Administration\PublishSession.cs" />
+    <Compile Include="Specs\Administration\CreateSession.cs" />
     <Compile Include="Specs\Administration\CreateScreen.cs" />
     <Compile Include="Specs\Administration\GetCinemas.cs" />
     <Compile Include="Identities.cs" />

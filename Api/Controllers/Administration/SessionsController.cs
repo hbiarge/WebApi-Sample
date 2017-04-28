@@ -2,7 +2,9 @@
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Api.BindingModels;
 using Api.Infrastructure;
+using Aplication.Commands;
 using MediatR;
 
 namespace Api.Controllers.Administration
@@ -39,55 +41,44 @@ namespace Api.Controllers.Administration
         [ValidateModel]
         public async Task<IHttpActionResult> CreateSession(
             int cinemaId,
-            object model)
+            CreateSessionBindingModel model)
         {
-            //var response = await _mediator.Send(new CreateScreenCommand(
-            //    cinemaId: cinemaId,
-            //    screenName: model.Name,
-            //    screenRows: model.Rows,
-            //    screenSeatsPerRow: model.SeatsPerRow));
+            var response = await _mediator.Send(new CreateSessionCommand(
+                cinemaId: cinemaId,
+                screenId: model.ScreenId,
+                filmId: model.FilmId,
+                start: model.Start));
 
-            //var url = Url.Route("GetScreen", new { CinemaId = cinemaId, ScreenId = response.Screen.Id });
-            //return Created(url, response.Screen);
-            throw new NotImplementedException();
+            var url = Url.Route("GetSession", new { CinemaId = cinemaId, SessionId = response.Session.SessionId });
+            return Created(url, response.Session);
         }
 
         // PUT: cinemas/1/sessions/1/publish
         [HttpPut]
         [Route("{sessionId:int}/publish")]
         [ValidateModel]
-        public async Task<IHttpActionResult> PublishSession(
-            int cinemaId,
-            object model)
+        public async Task<IHttpActionResult> PublishSession(int cinemaId, int sessionId)
         {
-            //var response = await _mediator.Send(new CreateScreenCommand(
-            //    cinemaId: cinemaId,
-            //    screenName: model.Name,
-            //    screenRows: model.Rows,
-            //    screenSeatsPerRow: model.SeatsPerRow));
+            await _mediator.Send(new PublishSessionCommand(
+                cinemaId: cinemaId,
+                sessionId: sessionId,
+                action: PublishSessionCommand.ActionType.Publish));
 
-            //var url = Url.Route("GetScreen", new { CinemaId = cinemaId, ScreenId = response.Screen.Id });
-            //return Created(url, response.Screen);
-            throw new NotImplementedException();
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // DELETE: cinemas/1/sessions/1/publish
         [HttpDelete]
         [Route("{sessionId:int}/publish")]
         [ValidateModel]
-        public async Task<IHttpActionResult> UnpublishSession(
-            int cinemaId,
-            object model)
+        public async Task<IHttpActionResult> UnpublishSession(int cinemaId, int sessionId)
         {
-            //var response = await _mediator.Send(new CreateScreenCommand(
-            //    cinemaId: cinemaId,
-            //    screenName: model.Name,
-            //    screenRows: model.Rows,
-            //    screenSeatsPerRow: model.SeatsPerRow));
+            await _mediator.Send(new PublishSessionCommand(
+                cinemaId: cinemaId,
+                sessionId: sessionId,
+                action: PublishSessionCommand.ActionType.Publish));
 
-            //var url = Url.Route("GetScreen", new { CinemaId = cinemaId, ScreenId = response.Screen.Id });
-            //return Created(url, response.Screen);
-            throw new NotImplementedException();
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // DELETE: cinemas/1/sessions/1
