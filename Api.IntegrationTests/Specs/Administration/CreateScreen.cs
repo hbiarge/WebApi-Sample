@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Api.BindingModels;
 using Api.IntegrationTests.Infrastructure;
 using Api.IntegrationTests.Infrastructure.CollectionFixtures;
-using Aplication.Commands;
 using Aplication.Queries.ViewModels;
 using FluentAssertions;
 using Microsoft.Owin.Testing;
@@ -32,7 +31,7 @@ namespace Api.IntegrationTests.Specs.Administration
         [Fact]
         public async Task CreateScreen_With_Valid_Data_Should_Return_Created()
         {
-            var endpoint = $"api/cinemas/{_fixture.SeedData.Cinema.Id}/screens";
+            var endpoint = $"api/v1/cinemas/{_fixture.SeedData.Cinema.Id}/screens";
             var response = await _fixture.Server.CreateRequest(endpoint)
                 .WithIdentity(Identities.User)
                 .WithJsonContent(_model)

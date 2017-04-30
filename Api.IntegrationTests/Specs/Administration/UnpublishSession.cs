@@ -27,7 +27,7 @@ namespace Api.IntegrationTests.Specs.Administration
         [Fact]
         public async Task PublishSession_Should_Publish_Session()
         {
-            var endpoint = $"api/cinemas/{_cinemaId}/sessions/{_sessionId}/publish";
+            var endpoint = $"api/v1/cinemas/{_cinemaId}/sessions/{_sessionId}/publish";
             var response = await _fixture.Server.CreateRequest(endpoint)
                 .WithIdentity(Identities.User)
                 .SendAsync(HttpMethod.Delete.Method);

@@ -20,6 +20,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,6 +43,9 @@
     </Reference>
     <Reference Include="MediatR, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MediatR.3.0.1\lib\net45\MediatR.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.WebApi.Versioning, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Versioning.2.1.0-beta2\lib\net45\Microsoft.AspNet.WebApi.Versioning.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -73,6 +78,7 @@
     <Compile Include="Controllers\Administration\ScreensController.cs" />
     <Compile Include="Controllers\Administration\CinemasController.cs" />
     <Compile Include="Controllers\Administration\SessionsController.cs" />
+    <Compile Include="Controllers\Administration\VersionController.cs" />
     <Compile Include="Controllers\Scheduling\ScheduleController.cs" />
     <Compile Include="Controllers\Ticketing\TicketsController.cs" />
     <Compile Include="Infrastructure\CustomAuthorize.cs" />
@@ -83,6 +89,8 @@
     <Compile Include="Infrastructure\ValidateDateAttribute.cs" />
     <Compile Include="Infrastructure\ValidateModelAttribute.cs" />
     <Compile Include="Infrastructure\ValidationErrorAttribute.cs" />
+    <Compile Include="Infrastructure\Versioning\Version1Attribute.cs" />
+    <Compile Include="Infrastructure\Versioning\Version2Attribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,12 +2,14 @@
 using System.Threading.Tasks;
 using System.Web.Http;
 using Api.Infrastructure;
+using Api.Infrastructure.Versioning;
 using Aplication.Queries;
 using MediatR;
 
 namespace Api.Controllers.Scheduling
 {
-    [RoutePrefix("api/cinemas/{cinemaId:int}/schedule")]
+    [Version1]
+    [RoutePrefix("api/v{version:apiVersion}/cinemas/{cinemaId:int}/schedule")]
     public class ScheduleController : ApiController
     {
         private readonly IMediator _mediator;
@@ -17,7 +19,7 @@ namespace Api.Controllers.Scheduling
             _mediator = mediator;
         }
 
-        // GET: cinemas/1/schedule/2017/4/3
+        // GET: api/v1/cinemas/1/schedule/2017/4/3
 
         [HttpGet]
         [Route("{year:int}/{month:range(1,12)}/{day:range(1,31)}")]

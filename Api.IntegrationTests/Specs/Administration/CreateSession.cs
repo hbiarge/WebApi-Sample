@@ -33,7 +33,7 @@ namespace Api.IntegrationTests.Specs.Administration
         [Fact]
         public async Task CreateSession_With_Valid_Data_Should_Return_Created()
         {
-            var endpoint = $"api/cinemas/{_fixture.SeedData.Cinema.Id}/sessions";
+            var endpoint = $"api/v1/cinemas/{_fixture.SeedData.Cinema.Id}/sessions";
             var response = await _fixture.Server.CreateRequest(endpoint)
                 .WithIdentity(Identities.User)
                 .WithJsonContent(_model)

@@ -1,11 +1,13 @@
 ﻿using System.Net;
 using System.Web.Http;
 using Api.Infrastructure;
+using Api.Infrastructure.Versioning;
 using MediatR;
 
 namespace Api.Controllers.Administration
 {
-    [RoutePrefix("api/films")]
+    [Version1]
+    [RoutePrefix("api/v{version:apiVersion}/films")]
     public class FilmsController : ApiController
     {
         private readonly IMediator _mediator;
@@ -15,7 +17,8 @@ namespace Api.Controllers.Administration
             _mediator = mediator;
         }
 
-        // GET: films
+        // GET: api/v1/films
+
         [HttpGet]
         [Route]
         public IHttpActionResult GetFilms()
@@ -23,7 +26,8 @@ namespace Api.Controllers.Administration
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: films/1
+        // GET: api/v1/films/1
+
         [HttpGet]
         [Route("{filmId:int}")]
         public IHttpActionResult GetFilm(int filmId)
@@ -31,7 +35,8 @@ namespace Api.Controllers.Administration
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: films
+        // POST: api/v1/films
+
         [HttpPost]
         [Route]
         [ValidateModel]

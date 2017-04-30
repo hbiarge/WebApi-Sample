@@ -1,11 +1,13 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
+using Api.Infrastructure.Versioning;
 using Aplication.Commands;
 using MediatR;
 
 namespace Api.Controllers.Ticketing
 {
-    [RoutePrefix("api/cinemas/{cinemaId:int}/ticketing")]
+    [Version1]
+    [RoutePrefix("api/v{version:apiVersion}/cinemas/{cinemaId:int}/ticketing")]
     public class TicketsController : ApiController
     {
         private readonly IMediator _mediator;

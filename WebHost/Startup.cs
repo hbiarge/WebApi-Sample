@@ -1,5 +1,8 @@
-﻿using System.Security.Claims;
+﻿using System.IO;
+using System.Reflection;
+using System.Security.Claims;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Api;
 using Autofac;
 using Autofac.Integration.WebApi;
@@ -38,11 +41,47 @@ namespace WebHost
                 DependencyResolver = new AutofacWebApiDependencyResolver(_container)
             };
 
-            config.EnableSwagger(c => c.SingleApiVersion("v1", "Cinematic API"))
-                .EnableSwaggerUi();
-
             // Configure common options
             Api.ApiConfiguration.Configure(config);
+
+            var apiExplorer = config.AddVersionedApiExplorer();
+
+            config.EnableSwagger(
+                "{apiVersion}/swagger",
+                swagger =>
+                {
+                    // build a swagger document and endpoint for each discovered API version
+                    swagger.MultipleApiVersions(
+                        (apiDescription, version) =>
+                            apiDescription.GetGroupName() == version,
+                            info =>
+                            {
+                                foreach (var group in apiExplorer.ApiDescriptions)
+                                {
+                                    var apiVersion = group.ApiVersion;
+                                    var description = "Cinematic api.";
+
+                                    if (group.IsDeprecated)
+                                    {
+                                        description += " This API version has been deprecated.";
+                                    }
+
+                                    info.Version(apiExplorer.GetGroupName(apiVersion), $"Cinematic API {apiVersion}")
+                                        .Contact(c => c.Name("Hugo Biarge").Email("hbiarge@painconcepts.com"))
+                                        .Description(description)
+                                        .License(l => l.Name("MIT").Url("https://opensource.org/licenses/MIT"))
+                                        .TermsOfService("Shareware");
+                                }
+                            });
+
+
+                    // add a custom operation filter which documents the implicit API version parameter
+                    // swagger.OperationFilter<ImplicitApiVersionParameter>();
+
+                    // integrate xml comments
+                    // swagger.IncludeXmlComments(XmlCommentsFilePath);
+                })
+                .EnableSwaggerUi();
 
             // Configure middlewares pipeline
 
@@ -75,6 +114,16 @@ namespace WebHost
             builder.RegisterModule<InfrastructureAutofacModule>();
 
             return builder.Build();
+        }
+
+        private static string XmlCommentsFilePath
+        {
+            get
+            {
+                var basePath = System.AppDomain.CurrentDomain.RelativeSearchPath;
+                var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
+                return Path.Combine(basePath, fileName);
+            }
         }
     }
 }

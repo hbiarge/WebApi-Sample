@@ -22,7 +22,7 @@ namespace Api.IntegrationTests.Specs.Administration
         [Fact]
         public async Task GetCinemas_Should_Return_Values()
         {
-            const string endpoint = "api/cinemas";
+            const string endpoint = "api/v1/cinemas";
             var response = await _fixture.Server.CreateRequest(endpoint)
                 .WithIdentity(Identities.User)
                 .GetAsync();

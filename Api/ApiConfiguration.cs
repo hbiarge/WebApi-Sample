@@ -1,10 +1,11 @@
-﻿using System;
-using System.Web.Http;
+﻿using System.Web.Http;
 using Api.Infrastructure;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Web.Http.ExceptionHandling;
+using System.Web.Http.Routing;
 using Api.Infrastructure.Services;
+using Microsoft.Web.Http.Routing;
 
 namespace Api
 {
@@ -13,7 +14,16 @@ namespace Api
         public static void Configure(HttpConfiguration config)
         {
             // Map attribute routes
-            config.MapHttpAttributeRoutes();
+            var constraintResolver = new DefaultInlineConstraintResolver()
+            {
+                ConstraintMap =
+                {
+                    ["apiVersion"] = typeof( ApiVersionRouteConstraint )
+                }
+            };
+
+            config.AddApiVersioning(o => o.ReportApiVersions = true);
+            config.MapHttpAttributeRoutes(constraintResolver);
 
             config.Filters.Add(new CustomAuthorizeAttribute());
             config.Filters.Add(new ValidationErrorAttribute());

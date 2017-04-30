@@ -4,12 +4,14 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Api.BindingModels;
 using Api.Infrastructure;
+using Api.Infrastructure.Versioning;
 using Aplication.Commands;
 using MediatR;
 
 namespace Api.Controllers.Administration
 {
-    [RoutePrefix("api/cinemas/{cinemaId:int}/sessions")]
+    [Version1]
+    [RoutePrefix("api/v{version:apiVersion}/cinemas/{cinemaId:int}/sessions")]
     public class SessionsController : ApiController
     {
         private readonly IMediator _mediator;
@@ -19,23 +21,28 @@ namespace Api.Controllers.Administration
             _mediator = mediator;
         }
 
-        // GET: cinemas/1/sessions
+        // GET: api/v1/cinemas/1/sessions
+
         [HttpGet]
         [Route]
         public IHttpActionResult GetSessions()
         {
+            // TODO: Implement
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: cinemas/1/sessions/1
+        // GET: api/v1/cinemas/1/sessions/1
+
         [HttpGet]
         [Route("{sessionId:int}", Name = "GetSession")]
         public IHttpActionResult GetSession(int cinemaId, int sessionId)
         {
+            // TODO: Implement
             return Ok($"Session {sessionId}");
         }
 
-        // POST: cinemas/1/sessions
+        // POST: api/v1/cinemas/1/sessions
+
         [HttpPost]
         [Route]
         [ValidateModel]
@@ -53,7 +60,19 @@ namespace Api.Controllers.Administration
             return Created(url, response.Session);
         }
 
-        // PUT: cinemas/1/sessions/1/publish
+        // DELETE: cinemas/1/sessions/1
+        [HttpDelete]
+        [Route("{sessionId:int}")]
+        public async Task<IHttpActionResult> DeleteSession(
+            int cinemaId,
+            int sessionId)
+        {
+            // TODO: Implement
+            throw new NotImplementedException();
+        }
+
+        // PUT: api/v1/cinemas/1/sessions/1/publish
+
         [HttpPut]
         [Route("{sessionId:int}/publish")]
         [ValidateModel]
@@ -68,6 +87,7 @@ namespace Api.Controllers.Administration
         }
 
         // DELETE: cinemas/1/sessions/1/publish
+
         [HttpDelete]
         [Route("{sessionId:int}/publish")]
         [ValidateModel]
@@ -79,16 +99,6 @@ namespace Api.Controllers.Administration
                 action: PublishSessionCommand.ActionType.Publish));
 
             return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // DELETE: cinemas/1/sessions/1
-        [HttpDelete]
-        [Route("{sessionId:int}")]
-        public async Task<IHttpActionResult> DeleteSession(
-            int cinemaId,
-            int sessionId)
-        {
-            throw new NotImplementedException();
         }
 
         // List sessions (Pubished and unpublished)
