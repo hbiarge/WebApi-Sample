@@ -63,7 +63,7 @@ namespace Api.Controllers.Administration
         // DELETE: cinemas/1/sessions/1
         [HttpDelete]
         [Route("{sessionId:int}")]
-        public async Task<IHttpActionResult> DeleteSession(
+        public Task<IHttpActionResult> DeleteSession(
             int cinemaId,
             int sessionId)
         {

@@ -66,8 +66,8 @@ namespace WebHost
                                         description += " This API version has been deprecated.";
                                     }
 
-                                    info.Version(apiExplorer.GetGroupName(apiVersion), $"Cinematic API {apiVersion}")
-                                        .Contact(c => c.Name("Hugo Biarge").Email("hbiarge@painconcepts.com"))
+                                    info.Version(group.Name, $"Cinematic API {group.ApiVersion}")
+                                        .Contact(c => c.Name("Hugo Biarge").Email("hbiarge@plainconcepts.com"))
                                         .Description(description)
                                         .License(l => l.Name("MIT").Url("https://opensource.org/licenses/MIT"))
                                         .TermsOfService("Shareware");
@@ -76,6 +76,7 @@ namespace WebHost
 
 
                     // add a custom operation filter which documents the implicit API version parameter
+                    swagger.OperationFilter<SwaggerDefaultValues>();
                     // swagger.OperationFilter<ImplicitApiVersionParameter>();
 
                     // integrate xml comments
