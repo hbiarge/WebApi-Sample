@@ -1,13 +1,16 @@
 ﻿using System.Net;
 using System.Web.Http;
 using Api.Infrastructure;
+using Api.Infrastructure.Authorization;
 using Api.Infrastructure.Versioning;
 using MediatR;
+using Microsoft.Owin.Security.Authorization.WebApi;
 
 namespace Api.Controllers.Administration
 {
     [Version1]
     [RoutePrefix("api/v{version:apiVersion}/films")]
+    [ResourceAuthorize(Policy = Policies.Administrator)]
     public class FilmsController : ApiController
     {
         private readonly IMediator _mediator;

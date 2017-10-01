@@ -4,10 +4,12 @@ using System.Security.Claims;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Api;
+using Api.Infrastructure.Authorization;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Infrastructure;
 using Microsoft.Owin;
+using Microsoft.Owin.Security.Authorization.Infrastructure;
 using Owin;
 using Serilog;
 using Swashbuckle.Application;
@@ -40,6 +42,9 @@ namespace WebHost
             {
                 DependencyResolver = new AutofacWebApiDependencyResolver(_container)
             };
+
+            // Add policy based authorization
+            app.UseAuthorization(Policies.Configure);
 
             // Configure common options
             Api.ApiConfiguration.Configure(config);
@@ -91,7 +96,9 @@ namespace WebHost
             {
                 var identity = new ClaimsIdentity(new[]
                     {
-                        new Claim(ClaimTypes.Name, "Hugo"),
+                        new Claim(ClaimTypes.Role, "Administrator"),
+                        new Claim(ClaimTypes.Role, "Vendor"),
+                        new Claim(ClaimTypes.Name, "Hugo")
                     },
                     "Custom");
                 context.Authentication.User = new ClaimsPrincipal(identity);

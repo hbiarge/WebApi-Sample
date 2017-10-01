@@ -1,15 +1,18 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Api.Infrastructure.Authorization;
 using Api.Infrastructure.Versioning;
 using Aplication.Queries;
 using Aplication.Queries.ViewModels;
 using MediatR;
+using Microsoft.Owin.Security.Authorization.WebApi;
 
 namespace Api.Controllers.Administration
 {
     [Version1]
     [RoutePrefix("api/v{version:apiVersion}/cinemas")]
+    [ResourceAuthorize(Policy = Policies.Administrator)]
     public class CinemasController : ApiController
     {
         private readonly IMediator _mediator;

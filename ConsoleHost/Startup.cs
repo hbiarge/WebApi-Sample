@@ -1,9 +1,11 @@
 ﻿using System.Security.Claims;
 using System.Web.Http;
 using Api;
+using Api.Infrastructure.Authorization;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Infrastructure;
+using Microsoft.Owin.Security.Authorization.Infrastructure;
 using Owin;
 
 namespace ConsoleHost
@@ -44,6 +46,9 @@ namespace ConsoleHost
                 DependencyResolver = new AutofacWebApiDependencyResolver(_container)
             };
 
+            // Add policy based authorization
+            api.UseAuthorization(Policies.Configure);
+
             // Configure common options
             Api.ApiConfiguration.Configure(config);
 
@@ -54,6 +59,8 @@ namespace ConsoleHost
             {
                 var identity = new ClaimsIdentity(new[]
                 {
+                    new Claim(ClaimTypes.Role, "Administrator"), 
+                    new Claim(ClaimTypes.Role, "Vendor"), 
                     new Claim(ClaimTypes.Name, "Hugo"),
                 },
                 "Custom");

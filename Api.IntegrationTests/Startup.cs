@@ -1,8 +1,10 @@
 ﻿using System.Web.Http;
 using Acheve.Owin.Testing.Security;
+using Api.Infrastructure.Authorization;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Infrastructure;
+using Microsoft.Owin.Security.Authorization.Infrastructure;
 using Owin;
 
 namespace Api.IntegrationTests
@@ -12,7 +14,7 @@ namespace Api.IntegrationTests
         public void Configuration(IAppBuilder app)
         {
             var container = BuildContainer();
-            var config = BuidHttpConfiguration(container);
+            var config = BuidHttpConfiguration(container, app);
 
             // Configure OWIN pipeline
             app.UseAutofacMiddleware(container);
@@ -34,13 +36,16 @@ namespace Api.IntegrationTests
             return builder.Build();
         }
 
-        private static HttpConfiguration BuidHttpConfiguration(IContainer container)
+        private static HttpConfiguration BuidHttpConfiguration(IContainer container, IAppBuilder app)
         {
             // Create HttpConfiguration
             var config = new HttpConfiguration
             {
                 DependencyResolver = new AutofacWebApiDependencyResolver(container)
             };
+
+            // Add policy based authorization
+            app.UseAuthorization(Policies.Configure);
 
             // Configure common options
             ApiConfiguration.Configure(config);

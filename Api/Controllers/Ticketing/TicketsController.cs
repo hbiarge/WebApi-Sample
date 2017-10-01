@@ -1,13 +1,16 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
+using Api.Infrastructure.Authorization;
 using Api.Infrastructure.Versioning;
 using Aplication.Commands;
 using MediatR;
+using Microsoft.Owin.Security.Authorization.WebApi;
 
 namespace Api.Controllers.Ticketing
 {
     [Version1]
     [RoutePrefix("api/v{version:apiVersion}/cinemas/{cinemaId:int}/ticketing")]
+    [ResourceAuthorize(Policy = Policies.Vendor)]
     public class TicketsController : ApiController
     {
         private readonly IMediator _mediator;
