@@ -19,7 +19,7 @@ namespace Domain.UnitTests.Aggregates.Sessions
             _screen = new Screen(new Cinema("Cinemundo"), "Guara", 2, 2);
             _film = new Film("Pulp fiction", 120);
 
-            _sut = new Session(_screen, _film, DateTime.Today.AddHours(17));
+            _sut = Session.Create(_screen, _film, DateTime.Today.AddHours(17));
         }
 
         [Fact]

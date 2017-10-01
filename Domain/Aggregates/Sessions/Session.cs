@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Domain.Aggregates.Cinemas;
 using Domain.Aggregates.Films;
 
@@ -10,7 +9,7 @@ namespace Domain.Aggregates.Sessions
     {
         protected Session() { }
 
-        public Session(Screen screen, Film film, DateTime start)
+        private Session(Screen screen, Film film, DateTime start)
         {
             if (screen == null)
             {
@@ -21,8 +20,6 @@ namespace Domain.Aggregates.Sessions
             {
                 throw new ArgumentNullException(nameof(film));
             }
-
-            // TODO: Validar fecha de sesión
 
             Screen = screen;
             ScreenId = screen.Id;
@@ -52,6 +49,23 @@ namespace Domain.Aggregates.Sessions
 
         public ICollection<SessionSeat> Seats { get; private set; }
 
+        public static Session Create(Screen screen, Film film, DateTime start)
+        {
+            if (screen == null)
+            {
+                throw new ArgumentNullException(nameof(screen));
+            }
+
+            if (film == null)
+            {
+                throw new ArgumentNullException(nameof(film));
+            }
+
+            var session = new Session(screen, film, start);
+
+            return session;
+        }
+
         public void Publish()
         {
             if (IsPublished)
@@ -68,25 +82,6 @@ namespace Domain.Aggregates.Sessions
             {
                 IsPublished = false;
             }
-        }
-
-        public Ticket SellSeat(int row, int number, decimal price)
-        {
-            if (IsPublished == false)
-            {
-                throw new InvalidOperationException("Can not sell not published session");
-            }
-
-            var seat = Seats.FirstOrDefault(s => s.Seat.Row == row && s.Seat.Number == number);
-
-            if (seat == null)
-            {
-                throw new InvalidOperationException("Can not find the specified seat in this screen");
-            }
-
-            seat.Sell(price);
-
-            return seat.Ticket;
         }
 
         private void CreateSeats()

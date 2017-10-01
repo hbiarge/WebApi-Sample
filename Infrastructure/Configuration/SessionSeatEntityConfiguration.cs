@@ -9,10 +9,7 @@ namespace Infrastructure.Configuration
         {
             ToTable("SessionSeats", "session");
 
-            HasKey(x => new { x.SessionId, x.SeatId });
-
-            Property(x => x.Sold)
-                .IsRequired();
+            HasKey(x => new { x.SessionId, x.SeatRow, x.SeatNumber });
         }
     }
 }

@@ -22,36 +22,40 @@ namespace Domain.Aggregates.Sessions
             Session = session;
             SessionId = Session.Id;
             Seat = seat;
-            SeatId = Seat.Id;
+            SeatScreenId = seat.ScreenId;
+            SeatRow = seat.Row;
+            SeatNumber = seat.Number;
         }
 
         public int SessionId { get; private set; }
 
         public Session Session { get; private set; }
 
-        public int SeatId { get; private set; }
+        public int SeatScreenId { get; private set; }
+
+        public int SeatRow { get; private set; }
+
+        public int SeatNumber { get; private set; }
 
         public Seat Seat { get; private set; }
 
-        public bool Sold { get; private set; }
+        public decimal? Price { get; private set; }
 
-        public Ticket Ticket { get; private set; }
+        public Guid? Ticket { get; private set; }
 
-        public void Sell(decimal price)
+        public bool Sold => Ticket.HasValue;
+
+        public Guid Sell(decimal price)
         {
             if (Sold)
             {
-                throw new InvalidOperationException("The seat is already reserved for this session");
+                throw new InvalidOperationException();
             }
 
-            Sold = true;
-            Ticket = new Ticket(this, price);
-        }
+            Price = price;
+            Ticket = Guid.NewGuid();
 
-        public void UndoSell()
-        {
-            Sold = false;
-            Ticket = null;
+            return Ticket.Value;
         }
     }
 }

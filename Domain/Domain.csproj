@@ -54,13 +54,15 @@
     <Compile Include="Aggregates\Cinemas\Seat.cs" />
     <Compile Include="Aggregates\Sessions\Session.cs" />
     <Compile Include="Aggregates\Sessions\SessionSeat.cs" />
-    <Compile Include="Aggregates\Sessions\Ticket.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Aggregates\Cinemas\Cinemas.cd" />
     <None Include="Aggregates\Sessions\Sessions.cd" />
     <None Include="Aggregates\Films\FIlms.cd" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Aggregates\Tickets\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

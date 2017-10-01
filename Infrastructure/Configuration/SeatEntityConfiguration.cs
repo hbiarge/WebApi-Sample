@@ -9,17 +9,13 @@ namespace Infrastructure.Configuration
         {
             ToTable("Seats", "cine");
 
-            HasKey(x => x.Id);
+            HasKey(x => new { x.ScreenId, x.Row, x.Number });
 
             Property(x => x.Row)
                 .IsRequired();
 
             Property(x => x.Number)
                 .IsRequired();
-
-            HasMany(x => x.Sessions)
-                .WithRequired(x => x.Seat)
-                .WillCascadeOnDelete(false);
         }
     }
 }

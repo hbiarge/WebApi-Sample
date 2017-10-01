@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Aplication.Queries.Infrastructure;
 using Aplication.Queries.ViewModels;
 using MediatR;

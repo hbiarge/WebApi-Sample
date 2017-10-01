@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Infrastructure;
 using Infrastructure.Initializers;
 using Microsoft.Owin.Testing;

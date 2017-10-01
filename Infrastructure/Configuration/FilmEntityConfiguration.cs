@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity.ModelConfiguration;
-using Domain.Aggregates.Cinemas;
 using Domain.Aggregates.Films;
 
 namespace Infrastructure.Configuration
@@ -20,7 +19,11 @@ namespace Infrastructure.Configuration
                 .IsRequired();
 
             HasMany(x => x.Cinemas)
-                .WithMany();
+                .WithMany()
+                .Map(config =>
+                {
+                    config.ToTable("FilmCinemas", "cine");
+                });
         }
     }
 }

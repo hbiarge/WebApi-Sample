@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Aplication.Queries.ViewModels;
 using Domain;
@@ -44,8 +45,15 @@ namespace Aplication.Commands
                 throw new InvalidOperationException($"The film with id [{message.FilmId}] can not be found");
             }
 
-            var session = cinema.CreateSession(
-                message.ScreenId,
+            var screen = cinema.Screens.SingleOrDefault(s => s.Id == message.ScreenId);
+
+            if (screen == null)
+            {
+                throw new InvalidOperationException($"The screen with id [{message.ScreenId}] can not be found in the cinema [{message.CinemaId}]");
+            }
+
+            var session = Session.Create(
+                screen,
                 film,
                 message.Start);
 

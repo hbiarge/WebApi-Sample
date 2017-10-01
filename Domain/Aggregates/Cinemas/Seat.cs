@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using Domain.Aggregates.Sessions;
 
 namespace Domain.Aggregates.Cinemas
 {
@@ -28,10 +26,7 @@ namespace Domain.Aggregates.Cinemas
             Screen = screen;
             Row = row;
             Number = number;
-            Sessions = new List<SessionSeat>();
         }
-
-        public int Id { get; private set; }
 
         public int Row { get; private set; }
 
@@ -40,7 +35,5 @@ namespace Domain.Aggregates.Cinemas
         public int ScreenId { get; private set; }
 
         public Screen Screen { get; private set; }
-
-        public ICollection<SessionSeat> Sessions { get; private set; }
     }
 }

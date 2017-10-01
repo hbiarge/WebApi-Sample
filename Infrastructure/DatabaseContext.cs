@@ -29,7 +29,6 @@ namespace Infrastructure
             modelBuilder.Configurations.Add(new FilmEntityConfiguration());
             modelBuilder.Configurations.Add(new SessionEntityConfiguration());
             modelBuilder.Configurations.Add(new SessionSeatEntityConfiguration());
-            modelBuilder.Configurations.Add(new TicketEntityConfiguration());
         }
 
         async Task IUnitOfWork.CommitAsync()

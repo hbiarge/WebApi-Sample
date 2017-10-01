@@ -1,5 +1,4 @@
 using System;
-using Aplication.Queries.ViewModels;
 using FluentValidation;
 using MediatR;
 

@@ -16,7 +16,7 @@ namespace Infrastructure.Configuration
                 .IsRequired();
 
             HasMany(x => x.Seats)
-                .WithRequired(x => x.Screen);
+                .WithRequired(s => s.Screen);
         }
     }
 }
