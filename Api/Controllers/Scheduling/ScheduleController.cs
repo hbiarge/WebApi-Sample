@@ -6,13 +6,12 @@ using Api.Infrastructure.Authorization;
 using Api.Infrastructure.Versioning;
 using Aplication.Queries;
 using MediatR;
-using Microsoft.Owin.Security.Authorization.WebApi;
 
 namespace Api.Controllers.Scheduling
 {
     [Version1]
     [RoutePrefix("api/v{version:apiVersion}/cinemas/{cinemaId:int}/schedule")]
-    [ResourceAuthorize(Policy = Policies.Administrator)]
+    [CustomResourceAuthorizeAttribute(Policy = Policies.Administrator)]
     public class ScheduleController : ApiController
     {
         private readonly IMediator _mediator;

@@ -29,7 +29,7 @@ namespace Api.IntegrationTests.Specs.Administration
         {
             var endpoint = $"api/v1/cinemas/{_cinemaId}/sessions/{_sessionId}/publish";
             var response = await _fixture.Server.CreateRequest(endpoint)
-                .WithIdentity(Identities.User)
+                .WithIdentity(Identities.Administrator)
                 .SendAsync(HttpMethod.Delete.Method);
 
             await response.IsSuccessStatusCodeOrTrow();

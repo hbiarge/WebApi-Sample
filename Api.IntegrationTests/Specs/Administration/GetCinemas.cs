@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Api.IntegrationTests.Infrastructure;
 using Api.IntegrationTests.Infrastructure.CollectionFixtures;
@@ -20,11 +21,11 @@ namespace Api.IntegrationTests.Specs.Administration
         }
 
         [Fact]
-        public async Task GetCinemas_Should_Return_Values()
+        public async Task GetCinemas_By_Admin_Should_Return_Values()
         {
             const string endpoint = "api/v1/cinemas";
             var response = await _fixture.Server.CreateRequest(endpoint)
-                .WithIdentity(Identities.User)
+                .WithIdentity(Identities.Administrator)
                 .GetAsync();
 
             await response.IsSuccessStatusCodeOrTrow();
@@ -32,6 +33,17 @@ namespace Api.IntegrationTests.Specs.Administration
             var values = await response.Content.ReadAsAsync<CinemaViewModel[]>();
 
             values.Should().HaveCount(1);
+        }
+
+        [Fact]
+        public async Task GetCinemas_By_User_Should_Return_Values()
+        {
+            const string endpoint = "api/v1/cinemas";
+            var response = await _fixture.Server.CreateRequest(endpoint)
+                .WithIdentity(Identities.User)
+                .GetAsync();
+
+            response.StatusCode.Should().Be(HttpStatusCode.Forbidden);
         }
     }
 }

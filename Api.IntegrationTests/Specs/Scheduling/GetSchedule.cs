@@ -24,7 +24,7 @@ namespace Api.IntegrationTests.Specs.Scheduling
         {
             var endpoint = $"api/v1/cinemas/{_fixture.SeedData.Cinema.Id}/schedule/2017/3/5";
             var response = await _fixture.Server.CreateRequest(endpoint)
-                .WithIdentity(Identities.User)
+                .WithIdentity(Identities.Administrator)
                 .GetAsync();
 
             await response.IsSuccessStatusCodeOrTrow();

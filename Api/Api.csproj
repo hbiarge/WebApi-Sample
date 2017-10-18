@@ -100,6 +100,7 @@
     <Compile Include="Controllers\Scheduling\ScheduleController.cs" />
     <Compile Include="Controllers\Ticketing\TicketsController.cs" />
     <Compile Include="Infrastructure\Authorization\CustomAuthorize.cs" />
+    <Compile Include="Infrastructure\Authorization\CustomResourceAuthorizeAttribute.cs" />
     <Compile Include="Infrastructure\Authorization\Policies.cs" />
     <Compile Include="Infrastructure\DateBuilder.cs" />
     <Compile Include="Infrastructure\Services\CustomExceptionHandler.cs" />

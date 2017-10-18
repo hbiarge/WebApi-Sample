@@ -1,7 +1,6 @@
 ﻿using System.Web.Http;
 using Api.Infrastructure.Authorization;
 using Api.Infrastructure.Versioning;
-using Microsoft.Owin.Security.Authorization.WebApi;
 using Microsoft.Web.Http;
 
 namespace Api.Controllers.Administration
@@ -9,7 +8,7 @@ namespace Api.Controllers.Administration
     [Version1]
     [Version2]
     [RoutePrefix("api/v{version:apiVersion}/version")]
-    [ResourceAuthorize(Policy = Policies.Administrator)]
+    [CustomResourceAuthorizeAttribute(Policy = Policies.Administrator)]
     public class VersionController : ApiController
     {
         [Route]

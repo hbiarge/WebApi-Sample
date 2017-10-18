@@ -21,7 +21,7 @@ namespace ConsoleHost
             app.UseAutofacMiddleware(_container);
             app.DisposeScopeOnAppDisposing(_container);
 
-            app.Map("/api", ApiConfiguration);
+            ApiConfiguration(app);
 
             app.UseWelcomePage();
         }

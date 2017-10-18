@@ -35,7 +35,7 @@ namespace Api.IntegrationTests.Specs.Administration
         {
             var endpoint = $"api/v1/cinemas/{_fixture.SeedData.Cinema.Id}/sessions";
             var response = await _fixture.Server.CreateRequest(endpoint)
-                .WithIdentity(Identities.User)
+                .WithIdentity(Identities.Administrator)
                 .WithJsonContent(_model)
                 .PostAsync();
 

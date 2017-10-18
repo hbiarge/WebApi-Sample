@@ -64,6 +64,10 @@
     <Compile Include="Initializers\DropCreateDatabaseAlways.cs" />
     <Compile Include="Initializers\MigrateDatabaseToLatestVersion.cs" />
     <Compile Include="Initializers\Initiaizer.cs" />
+    <Compile Include="Migrations\201710182000518_Initial.cs" />
+    <Compile Include="Migrations\201710182000518_Initial.Designer.cs">
+      <DependentUpon>201710182000518_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CinemaRepository.cs" />
@@ -79,6 +83,11 @@
       <Project>{059eb775-cd44-4eed-9d66-4d50102e23e0}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710182000518_Initial.resx">
+      <DependentUpon>201710182000518_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

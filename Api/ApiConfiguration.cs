@@ -4,8 +4,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Http.Routing;
+using Api.Infrastructure.Authorization;
 using Api.Infrastructure.Services;
-using Microsoft.Owin.Security.Authorization.WebApi;
 using Microsoft.Web.Http.Routing;
 
 namespace Api
@@ -26,7 +26,7 @@ namespace Api
             config.AddApiVersioning(o => o.ReportApiVersions = true);
             config.MapHttpAttributeRoutes(constraintResolver);
 
-            config.Filters.Add(new ResourceAuthorizeAttribute());
+            config.Filters.Add(new CustomResourceAuthorizeAttribute());
             config.Filters.Add(new ValidationErrorAttribute());
 
             // Show errors to local requests

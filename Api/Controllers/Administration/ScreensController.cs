@@ -7,13 +7,12 @@ using Api.Infrastructure.Authorization;
 using Api.Infrastructure.Versioning;
 using Aplication.Commands;
 using MediatR;
-using Microsoft.Owin.Security.Authorization.WebApi;
 
 namespace Api.Controllers.Administration
 {
     [Version1]
     [RoutePrefix("api/v{version:apiVersion}/cinemas/{cinemaId:int}/screens")]
-    [ResourceAuthorize(Policy = Policies.Administrator)]
+    [CustomResourceAuthorizeAttribute(Policy = Policies.Administrator)]
     public class ScreensController : ApiController
     {
         private readonly IMediator _mediator;
